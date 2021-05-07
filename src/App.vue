@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <nav-bar></nav-bar>
+    <main-content></main-content>
+
   </div>
 </template>
 <script>
-  import navBar from "./components/common/navBar/navBar";
+  import mainContent from "./components/common/mainContent/mainContent";
 	export default {
 		name:"App",
     components:{
-			navBar
+			mainContent
     }
 	}
 </script>
