@@ -73,7 +73,7 @@
     p{
       font-size: small;
       color: silver;
-      border-bottom: 2px solid #cccccc;
+      /*border-bottom: 2px solid #cccccc;*/
     }
   }
 }
