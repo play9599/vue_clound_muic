@@ -1,15 +1,22 @@
 <template>
   <div class="content">
-    <div class="sculpture"/>
-    <div class="login_txt">未登录
-    <span></span></div>
+    <div class="sculpture" @click="login_btn"/>
+    <div class="login_txt">
+        <p style="display: inline-block">未登录</p>
+    <span></span>
+    </div>
     <a href="/pay">开通vip</a>
   </div>
 </template>
 
 <script>
 	export default {
-		name: "smallCommon"
+		name: "smallCommon",
+        methods:{
+			login_btn(){
+				this.$bus.$emit("login","需要登录")
+            }
+        }
 	}
 </script>
 

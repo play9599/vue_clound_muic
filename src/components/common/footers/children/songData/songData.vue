@@ -1,13 +1,12 @@
 <template>
   <div class="song_data">
     <div class="ps" ref="ps">
-      <img src="@/assets/image/logo.png" title="展开音乐详情页" ref="img"/>
+      <img :src="date.al.picUrl" title="展开音乐详情页" ref="img"/>
     </div>
     <div class="songer">
       <p>
-        <a href="/">简单爱</a>
-        <span>未知</span>
-
+        <a href="/">{{date.name}}</a>
+        <span>{{date.ar[0].name}}</span>
       </p>
       <div class="love" @click="btn_show">
         <svg v-if="show"  t="1620373256612" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1426" width="24" height="24"><path d="M364.2 174.3c38.3 0 76 10 109 28.8 12.3 7 26 10.6 39.7 10.6 13.5 0 27-3.4 39.2-10.3 32.7-18.4 70-28.1 107.8-28.1 58.8 0 114 22.9 155.5 64.4 40.7 40.7 63.5 94.7 64.4 152.2 0.9 57.4-20.2 112-59.4 153.7-1 1.1-2.1 2.3-3 3.4-0.4 0.5-0.6 0.7-0.7 0.7l-297 297c-1.9 1.9-4.3 2.9-7.1 2.9-2.7 0-5.1-1-7.1-2.9L209.3 550.5l-0.7-0.7-0.3-0.3c-41.3-41.5-64.1-96.6-64.1-155.2 0-58.8 22.9-114 64.4-155.6s96.8-64.4 155.6-64.4m0-80c-165.7 0-300 134.3-300 300 0 82.6 33.4 157.4 87.4 211.7 0.1 0.2 0.3 0.3 0.4 0.5l297 297c17.6 17.6 40.6 26.4 63.6 26.4s46.1-8.8 63.6-26.4l297-297c1.9-1.9 3.8-4 5.5-6C989.1 482.8 986.8 298 872 183.1c-58.6-58.6-135.3-87.9-212.1-87.9-50.8 0-101.5 12.8-147 38.4-43.9-25-94.6-39.3-148.7-39.3z" fill="#e6e6e6" p-id="1427"></path></svg>
@@ -20,6 +19,9 @@
 <script>
 	export default {
 		name: "songData",
+        props:{
+		    date:Object
+        },
       data(){
 			return{
 				show:true
@@ -80,6 +82,12 @@
       margin: 10px;
       display: inline-block;
       a{
+          width: 5.5em;
+          display: inline-block;
+          height: 1.5em;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
         color: #000000;
       }
       span{

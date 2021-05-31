@@ -1,5 +1,5 @@
 <template>
-  <h2>朋友</h2>
+  <h2>歌单</h2>
 </template>
 
 <script>

@@ -18,7 +18,7 @@
     methods:{
 			btn(val){
 		    if (val === "back"){
-		    	this.$router.go(-1)
+		    	this.$router.back()
         }else {
 			    this.$router.go(1)
         }
@@ -29,7 +29,7 @@
 
 <style scoped lang = "scss">
 .left_right{
-  flex: 2;
+  flex: 6;
   color: #ffffff;
   .direction{
     width: 24px;

@@ -1,10 +1,17 @@
 <template>
-  <h2>视频</h2>
+  <div>
+      <sencond-menu></sencond-menu>
+      <router-view></router-view>
+  </div>
 </template>
 
 <script>
+    import sencondMenu from "../../components/content/sencondMenu/sencondMenu";
 	export default {
-		name: "videos"
+		name: "videos",
+        components:{
+			sencondMenu
+        }
 	}
 </script>
 

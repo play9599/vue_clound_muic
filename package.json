@@ -8,16 +8,20 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "element-ui": "^2.15.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-scroll": "^2.1.13",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
     "@vue/cli-service": "^3.0.4",
     "axios": "^0.21.1",
+    "babel-plugin-component": "^1.1.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
+    "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10"
   }
 }

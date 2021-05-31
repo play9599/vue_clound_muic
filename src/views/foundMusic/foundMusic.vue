@@ -1,10 +1,19 @@
 <template>
-  <h2>发现音乐</h2>
+  <div class="found">
+      <sencond-menu></sencond-menu>
+      <keep-alive>
+          <router-view></router-view>
+      </keep-alive>
+  </div>
 </template>
 
 <script>
+    import sencondMenu from "../../components/content/sencondMenu/sencondMenu";
 	export default {
-		name: "foundMusic"
+		name: "foundMusic",
+        components:{
+			sencondMenu,
+        }
 	}
 </script>
 
