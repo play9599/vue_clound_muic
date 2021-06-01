@@ -1,29 +1,41 @@
 <template>
-  <div class="container">
-    <nav-bar></nav-bar>
-    <div class="content">
-      <div class="left">
-        <left-list></left-list>
+  <div>
+      <div class="container">
+          <nav-bar></nav-bar>
+          <div class="content">
+              <div class="left">
+                  <left-list></left-list>
+              </div>
+              <div class="right">
+                  <div class="list" v-if="show">
+                      <ul>
+                          <li><span>音乐名</span><span>歌手</span><span>专辑</span></li>
+                          <li v-for="(item,index) in list" @click="btn(item.id,index)">
+                              <span>{{item.name}}</span>
+                              <span>{{item.ar[0].name}}</span>
+                              <span>{{item.al.name}}</span>
+                          </li>
+                      </ul>
+                  </div>
+                  <router-view></router-view>
+              </div>
+          </div>
+          <footers></footers>
+
       </div>
-      <div class="right">
-         <div class="list" v-if="show">
-             <ul>
-                 <li v-for="(item,index) in list" @click="btn(item.id,index)">
-                     <span>{{item.name}}</span>
-                     <span>{{item.ar[0].name}}</span>
-                     <span>{{item.al.name}}</span>
-                 </li>
-             </ul>
-         </div>
-        <router-view></router-view>
+      <div class="form" style="display: none">
+          <div id="form">
+              手机号码<input type="text" ref="phone"><hr/>
+              密码<input type="password" ref="password"><hr/>
+              <button @click="login">登录</button>
+          </div>
       </div>
-    </div>
-    <footers></footers>
   </div>
 </template>
 
 <script>
     import {song_detail} from "../../../network/song_detail";
+    import {phone} from "@/network/login";
 	import navBar from "../navBar/navBar";
   import leftList from "../../content/leftList/leftList";
   import footers from "../footers/footers";
@@ -36,7 +48,7 @@
       },
       data(){
 			  return {
-			  	lists :null
+			  	lists :null,
         }
       },
       computed:{
@@ -55,7 +67,12 @@
 			  	this.$store.commit("change_index",index)
 			  	this.$play.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 			      this.$bus.$emit("playMusic",id)
-        }
+        },
+          login(){
+			      phone(this.$refs.phone.value,this.$refs.password.value).then(res=>{
+				        console.log(res)
+            })
+          }
       }
   }
 </script>
@@ -66,7 +83,7 @@
   flex-direction: column;
   .content{
     width: 100vw;
-    height: 81vh;
+    height: calc(100vh - 10.5vh - 60px);
     display: flex;
     box-sizing: border-box;
     overflow: hidden;
@@ -109,11 +126,32 @@
   }
   .footer{
     width: 100vw;
+      position: absolute;
+      bottom: 0;
     height: 10.5vh;
     z-index: 2;
     background-color: #ececec;
 
   }
 }
-
+.form{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #d3dce6;
+    z-index: 99999999999999999999;
+    opacity: .7;
+    display: flex;
+    #form{
+        margin: auto;
+        text-align: center;
+        width: 25em;
+        height: 20em;
+        border-radius: 2em;
+        background-color: pink;
+    }
+}
 </style>

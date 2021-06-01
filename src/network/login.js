@@ -3,7 +3,7 @@ import {users_data} from "./index"
 export  function qrkey() {
 	// console.log("发送网络请求")
 	return users_data({
-		url:`/login/qr/key&time=${Date.now()}`
+		url:`/login/qr/key?time=${Date.now()}`
 	})
 }
 export  function create(key) {
@@ -23,4 +23,10 @@ export function getDate() {
  return users_data({
 	 url:`/login/status?time=${Date.now()}`
  })
+}
+//用手机登录
+export function phone(phone,password) {
+	return users_data({
+		url:`/login/cellphone?phone=${phone}&password=${password}`
+	})
 }

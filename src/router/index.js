@@ -5,6 +5,10 @@ const foundMusic = ()=>import("../views/foundMusic/foundMusic")
 const recommend = ()=>import("../views/foundMusic/children/recommend/recommend")
 const playList = ()=>import("../views/foundMusic/children/playList/playList")
 const rankingList =  ()=>import("../views/foundMusic/children/rankingList/rankingList")
+const songer = ()=>import("../views/foundMusic/children/songer/songer")
+const  newMusic = ()=>import("../views/foundMusic/children/newMusic/newMusic")
+
+
 const friend = ()=>import("../views/friend/friend")
 
 const videos = ()=>import("../views/videos/videos")
@@ -53,11 +57,11 @@ const routes = [
 			},
 			{
 				path:"songer",
-				component:recommend
+				component:songer
 			},
 			{
 				path:"music",
-				component:recommend
+				component:newMusic
 			}
 		]
 	},

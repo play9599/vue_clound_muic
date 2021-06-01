@@ -1,7 +1,7 @@
 <template>
     <div class="song_list">
         <router-link to="/foundMusic/playList"  tag="div" class="title">推荐歌单 ></router-link>
-        <list :show="true" :list="list"></list>
+        <list :show="true" :list="list" :center="true"></list>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 import {get_data} from "./index"
 //推荐歌单的数据
-export function personalized(limit=7) {
+export function personalized(limit=9) {
 	return get_data({
 		url:`/personalized?limit=${limit}`
 	})

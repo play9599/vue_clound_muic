@@ -4,13 +4,14 @@
             <li ref="day" class="day"v-if="show">
                 <span class="active" style="font-size: 12px;background-color: black;padding: 5px;text-align: center;color: white">根据你的音乐口味生成每日更新</span>
                 <img src="" alt="">
-                <span>每日推荐</span>
+                <span :class="{center:center}">每日推荐</span>
             </li>
             <!--                这里可以进行组件抽离-->
             <li v-for="item in list" @click="btn(item.id)">
-                <p>{{item.playCount | playCount}}</p>
+                <p v-if="show_count">{{item.playCount | playCount}}</p>
                 <img :src="item.picUrl || item.coverImgUrl" :alt="item.copywriter":title="item.copywriter">
-                <span>{{item.name}}</span>
+                <span :class="{center:center}">{{item.name}}</span>
+                <slot name="img" class="img_user"></slot>
             </li>
         </ul>
     </div>
@@ -24,7 +25,17 @@
             	type:Boolean,
                 require:false
             },
-            list:null
+            list:null,
+            show_count:{
+            	type:Boolean,
+              require: false,
+              default:true
+            },
+            center:{
+            	type:Boolean,
+                require:false,
+                default: false
+            }
         },
 		mounted() {
 			if (this.show){
@@ -63,6 +74,7 @@
                 margin-top: 10px;
                 width: 100%;
                 cursor: pointer;
+                overflow: hidden;
                 .active{
                     display: none;
                 }
@@ -88,7 +100,8 @@
                     display: inline-block;
                     width:200px;
                     padding: 1px;
-                    text-align: center;
+
+                    float: left;
                     &:nth-child(1){
                         position: absolute;
                         top: 0;
@@ -96,6 +109,13 @@
                         border-radius: 10px;
                         transition: all 2s ease-in-out;
                     }
+                }
+                .center{
+                    text-align: center;
+                }
+                svg{
+                    position: relative;
+                    left: -2em;
                 }
             }
             .day{

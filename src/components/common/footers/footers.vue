@@ -1,6 +1,5 @@
 <template>
   <div class="footer">
-
     <song-data :date="song_data"></song-data>
     <player-box></player-box>
     <operation></operation>

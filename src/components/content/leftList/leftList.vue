@@ -108,30 +108,31 @@
 						console.log("执行登录操作")
 						// sessionStorage.setItem("isLogin","true")
             this.$bus.$emit("bc","http://p1.music.126.net/hP0lEwX9end8vwfUT-1nhQ==/109951165310318199.jpg")
-						this.login_show = true;
+						// this.login_show = true;
             // this.qrCode()
-			  create(this.key).then(res=>{
-				  // res.qrimg
-				  this.img_url = res.data.qrimg
-				  let time = setInterval(()=>{
-					  getLoginCode(this.key).then(res=>{
-						  // console.log(res.code)
-						  if (res.code === 803){
-							  // localStorage.setItem("token",res.cookie)
-							  sessionStorage.setItem("isLogin","true")
-							  let {data:{profile}} =  getDate()
-							  this.user_data = profile
-							  clearInterval(time)
-							  this.login_show = false
+        //      这种方法会进入另外一种模式
+			  // create(this.key).then(res=>{
+				//   // res.qrimg
+				//   this.img_url = res.data.qrimg
+				//   let time = setInterval(()=>{
+				// 	  getLoginCode(this.key).then(res=>{
+				// 		  // console.log(res.code)
+				// 		  if (res.code === 803){
+				// 			  // localStorage.setItem("token",res.cookie)
+				// 			  sessionStorage.setItem("isLogin","true")
+				// 			  let {data:{profile}} =  getDate()
+				// 			  this.user_data = profile
+				// 			  clearInterval(time)
+				// 			  this.login_show = false
+				// 		  }else if (res.code === 802){
+				// 			  alert("扫码成功请在手机上确认")
+				// 		  }
+				// 	  })
+				//   },1000)
+			  // }).catch(err=>{
+			  //     console.log(err)
+        // })
 
-						  }else if (res.code === 802){
-							  alert("扫码成功请在手机上确认")
-						  }
-					  })
-				  },1000)
-			  }).catch(err=>{
-			      console.log(err)
-        })
 				// 		qrkey().then(res=>{
 				// 			this.key = res.data.unikey
         //        return create(this.key)
@@ -139,23 +140,23 @@
 				//         this.img_url = res.data.qrimg
 				// let time = setInterval(()=>{
 				// 		  getLoginCode(this.key).then(res=>{
-				// 			  // console.log(res.code)
 				// 			  if (res.code === 803){
-				// 				  // localStorage.setItem("token",res.cookie)
+				// 	          this.login_show = false
+				// 			  	clearInterval(time)
 				// 				  sessionStorage.setItem("isLogin","true")
-				// 				  let {data:{profile}} =  getDate()
-				// 				  this.user_data = profile
-				// 				  clearInterval(time)
-				// 				  this.login_show = false
+				// 				  getDate().then(res=>{
+				// 	  console.log(res.data)
+				// 	          this.user_data = res.data
+        //           })
         //
-				// 			  }else if (res.code === 802){
-				// 				  alert("扫码成功请在手机上确认")
 				// 			  }
 				// 		  })
 				// 	  },1000)
 				// 	}).catch(err=>{
 				// 		alert(err)
         //     })
+
+
                     }else {
 						console.log("执行跳转")
 						console.log(this.user)
