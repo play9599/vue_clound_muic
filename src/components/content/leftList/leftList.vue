@@ -6,6 +6,10 @@
       <ul v-for="item in items.ul">
         <li  @click="currIndex_btn(item.path)">{{item.name}}</li>
       </ul>
+        <p>创建的歌单</p>
+        <ul>
+            <li @click="btn(user_id)">我喜欢的音乐</li>
+        </ul>
     </ul>
     <div class="qrcode" v-if="login_show">
         <h2>扫码登录</h2>
@@ -48,16 +52,13 @@
                     {name:"下载管理",path:"/download"}
                 ]
 			        },
-			        {
-				        p:"创建的歌单",
-				        ul:[{name:"我喜欢的音乐",path:"/myLove"}]
-			        },
+
           ],
 		    currIndex:0,
 				login_show:false,
                 img_url:undefined,
                 key:"",
-                user_data: null
+                user_id:null
       }
     },
     methods:{
@@ -76,6 +77,9 @@
     isActive(index){
 			return this.currIndex === index
     },
+     btn(id){
+			  this.$router.replace({path:"/userDate",query:{id}})
+     },
     //二维码登录的方法
 	      async qrCode(){
 	          let {data:{unikey}} = await qrkey()
@@ -103,66 +107,65 @@
     },
      mounted() {
                 // let user = this.user_data
-				this.$bus.$on("login",(msg)=>{
-					if (sessionStorage.getItem("isLogin") === null){
-						console.log("执行登录操作")
-						// sessionStorage.setItem("isLogin","true")
-            this.$bus.$emit("bc","http://p1.music.126.net/hP0lEwX9end8vwfUT-1nhQ==/109951165310318199.jpg")
-						// this.login_show = true;
-            // this.qrCode()
-        //      这种方法会进入另外一种模式
-			  // create(this.key).then(res=>{
-				//   // res.qrimg
-				//   this.img_url = res.data.qrimg
-				//   let time = setInterval(()=>{
-				// 	  getLoginCode(this.key).then(res=>{
-				// 		  // console.log(res.code)
-				// 		  if (res.code === 803){
-				// 			  // localStorage.setItem("token",res.cookie)
-				// 			  sessionStorage.setItem("isLogin","true")
-				// 			  let {data:{profile}} =  getDate()
-				// 			  this.user_data = profile
-				// 			  clearInterval(time)
-				// 			  this.login_show = false
-				// 		  }else if (res.code === 802){
-				// 			  alert("扫码成功请在手机上确认")
-				// 		  }
-				// 	  })
-				//   },1000)
-			  // }).catch(err=>{
-			  //     console.log(err)
-        // })
+				this.$bus.$on("login",msg=> {
+			// if (sessionStorage.getItem("isLogin") === null){
+			// console.log("执行登录操作")
+			// sessionStorage.setItem("isLogin","true")
+			// this.$bus.$emit("bc","http://p1.music.126.net/hP0lEwX9end8vwfUT-1nhQ==/109951165310318199.jpg")
+			// this.login_show = true;
+			// this.qrCode()
+			//      这种方法会进入另外一种模式
+			// create(this.key).then(res=>{
+			//   // res.qrimg
+			//   this.img_url = res.data.qrimg
+			//   let time = setInterval(()=>{
+			// 	  getLoginCode(this.key).then(res=>{
+			// 		  // console.log(res.code)
+			// 		  if (res.code === 803){
+			// 			  // localStorage.setItem("token",res.cookie)
+			// 			  sessionStorage.setItem("isLogin","true")
+			// 			  let {data:{profile}} =  getDate()
+			// 			  this.user_data = profile
+			// 			  clearInterval(time)
+			// 			  this.login_show = false
+			// 		  }else if (res.code === 802){
+			// 			  alert("扫码成功请在手机上确认")
+			// 		  }
+			// 	  })
+			//   },1000)
+			// }).catch(err=>{
+			//     console.log(err)
+			// })
 
-				// 		qrkey().then(res=>{
-				// 			this.key = res.data.unikey
-        //        return create(this.key)
-				// 		}).then(res=>{
-				//         this.img_url = res.data.qrimg
-				// let time = setInterval(()=>{
-				// 		  getLoginCode(this.key).then(res=>{
-				// 			  if (res.code === 803){
-				// 	          this.login_show = false
-				// 			  	clearInterval(time)
-				// 				  sessionStorage.setItem("isLogin","true")
-				// 				  getDate().then(res=>{
-				// 	  console.log(res.data)
-				// 	          this.user_data = res.data
-        //           })
-        //
-				// 			  }
-				// 		  })
-				// 	  },1000)
-				// 	}).catch(err=>{
-				// 		alert(err)
-        //     })
+			// 		qrkey().then(res=>{
+			// 			this.key = res.data.unikey
+			//        return create(this.key)
+			// 		}).then(res=>{
+			//         this.img_url = res.data.qrimg
+			// let time = setInterval(()=>{
+			// 		  getLoginCode(this.key).then(res=>{
+			// 			  if (res.code === 803){
+			// 	          this.login_show = false
+			// 			  	clearInterval(time)
+			// 				  sessionStorage.setItem("isLogin","true")
+			// 				  getDate().then(res=>{
+			// 	  console.log(res.data)
+			// 	          this.user_data = res.data
+			//           })
+			//
+			// 			  }
+			// 		  })
+			// 	  },1000)
+			// 	}).catch(err=>{
+			// 		alert(err)
+			//     })
 
+			if (sessionStorage.getItem("isLogin") === "true") {
+				console.log("执行跳转")
+				this.$router.push({path: "/userDate", query: {id: msg || 322406014}})
+			}
+		})
 
-                    }else {
-						console.log("执行跳转")
-						console.log(this.user)
-						this.$router.push({path:"/userDate",query:{id: this.user_data.id || 322406014}})
-					}
-				})
    //      在浏览器刷新之前保留数据到客服端存储
    //       window.addEventListener("beforeunload",()=>{
    //       	      localStorage.setItem("article_index",this.currIndex)

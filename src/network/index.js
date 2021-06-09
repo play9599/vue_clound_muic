@@ -51,8 +51,7 @@ export function get_data(config) {
 		// let token = localStorage.getItem('token');
 		// if (token) {
 		// 	// 设置请求头中token的参数
-		// 	config.headers.common['cookies'] = localStorage.getItem('token');
-		// 	console.log(stoken)
+		// 	config.headers.common['token'] = localStorage.getItem('token');
 		// }
 		//拦截后需要将拦截下来的请求数据返回发送
 		return config;

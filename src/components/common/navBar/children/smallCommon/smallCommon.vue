@@ -1,8 +1,8 @@
 <template>
   <div class="content">
-    <div class="sculpture" @click="login_btn"/>
+    <img class="sculpture" @click="login_btn" :src="img"/>
     <div class="login_txt">
-        <p style="display: inline-block">未登录</p>
+        <p style="display: inline-block">{{username}}</p>
     <span></span>
     </div>
     <a href="/pay">开通vip</a>
@@ -12,12 +12,36 @@
 <script>
 	export default {
 		name: "smallCommon",
+      data(){
+			  return {
+			  	user_img:null,
+            default:"http://bpic.588ku.com/element_origin_min_pic/01/48/72/6057443a029cc58.jpg",
+            default_name:"未登录",
+			      user_name:null,
+            userId:undefined
+        }
+      },
         methods:{
 			login_btn(){
-				this.$bus.$emit("login","需要登录")
+				this.$bus.$emit("login",this.userId)
             }
-        }
-	}
+        },
+      mounted() {
+		  this.$bus.$on("user_img",val=>{
+		  	this.user_img = val[0]
+          this.user_name = val[1]
+          this.userId = val[2]
+      })
+	  },
+      computed:{
+			  img(){
+			  	return this.user_img|| this.default
+        },
+          username(){
+			  	return this.user_name ||this.default_name
+          }
+      }
+  }
 </script>
 
 <style scoped lang="scss">
